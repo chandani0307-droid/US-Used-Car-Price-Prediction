@@ -158,11 +158,12 @@ if st.button("Predict Price"):
         "is_luxury": [is_luxury]
     })
 
+    with st.spinner("🔍 Predicting Price... Please wait..."):
     prediction = model.predict(input_data)[0]
 
-    st.markdown("## 💰 Prediction Result")
+st.markdown("## 💰 Prediction Result")
 
-    st.metric(
+st.metric(
     label="Estimated Used Car Price",
     value=f"${prediction:,.2f}"
 )
