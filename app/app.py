@@ -158,28 +158,18 @@ if st.button("Predict Price"):
         "is_luxury": [is_luxury]
     })
 
-    with st.spinner("🔍 Predicting Price... Please wait..."):
-    prediction = model.predict(input_data)[0]
-
-st.markdown("## 💰 Prediction Result")
-
-st.metric(
-    label="Estimated Used Car Price",
-    value=f"${prediction:,.2f}"
-)
     
-# -----------------------------------
-# Footer
-# -----------------------------------
+try:
+    with st.spinner("🔍 Predicting Price... Please wait..."):
+        prediction = model.predict(input_data)[0]
 
-st.markdown("---")
+    st.markdown("## 💰 Prediction Result")
 
-st.markdown(
-    """
-    <div style="text-align: center; color: gray;">
-        Made with ❤️ by <b>Chandani Kumari</b><br>
-        © 2026 | US Used Car Price Prediction
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+    st.metric(
+        label="Estimated Used Car Price",
+        value=f"${prediction:,.2f}"
+    )
+
+except Exception as e:
+    st.error(f"❌ Prediction Failed: {e}")
+    
