@@ -166,3 +166,19 @@ if st.button("Predict Price"):
     label="Estimated Used Car Price",
     value=f"${prediction:,.2f}"
 )
+    
+# -----------------------------------
+# Footer
+# -----------------------------------
+
+st.markdown("---")
+
+st.markdown(
+    """
+    <div style="text-align: center; color: gray;">
+        Made with ❤️ by <b>Chandani Kumari</b><br>
+        © 2026 | US Used Car Price Prediction
+    </div>
+    """,
+    unsafe_allow_html=True
+)
