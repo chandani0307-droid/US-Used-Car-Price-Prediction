@@ -3,6 +3,7 @@ import pandas as pd
 import joblib
 import os
 from datetime import datetime
+from huggingface_hub import hf_hub_download
 
 st.set_page_config(
     page_title="Used Car Price Prediction",
@@ -13,9 +14,14 @@ st.set_page_config(
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MODEL_DIR = os.path.join(BASE_DIR, "models")
 
-# Load Model
-model = joblib.load(os.path.join(MODEL_DIR, "best_model.pkl"))
+# Download model from Hugging Face (only if needed)
+model_path = hf_hub_download(
+    repo_id="ckchandani0307/used-car-price-prediction-model",
+    filename="best_model.pkl"
+)
 
+# Load Model
+model = joblib.load(model_path)
 # Load Dropdown Files
 manufacturers = joblib.load(os.path.join(MODEL_DIR, "manufacturers.pkl"))
 manufacturer_model = joblib.load(os.path.join(MODEL_DIR, "manufacturer_model.pkl"))
